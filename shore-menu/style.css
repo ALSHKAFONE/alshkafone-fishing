@@ -1,0 +1,99 @@
+/* Dark enamel, warm brass and photographic shore scenes. */
+body.sm-player{--sm-ink:#09121b;--sm-panel:#101d28;--sm-edge:#705d40;--sm-gold:#f0c777;--sm-paper:#f8ecd6}
+body.sm-player .topbar{background:linear-gradient(100deg,#0d141a,#192632 67%,#0c141c);border-bottom:1px solid #776343}
+body.sm-player .topbar .brand strong{color:#f2d49b}
+body.sm-player.nb-navigation #appNav.side-nav{background:linear-gradient(#1b2730,#08111b 75%);border-top:1px solid #a98b55}
+body.sm-player.nb-navigation #appNav .nb-nav-button{color:#cdbb98;white-space:nowrap;min-width:0;border-radius:8px}
+body.sm-player.nb-navigation #appNav .nb-nav-button.active{box-shadow:inset 0 -2px #f6ca74,inset 0 0 18px #d0a65732;background:linear-gradient(180deg,#685131,#312a22);color:#ffe8ac;border-color:#a88552}
+body.sm-player .nb-breadcrumb button{border-color:#766044;color:#f2cf8c}
+.sm-store{color:#eee5d0;background:#0b141d;border:1px solid #8a7250;border-radius:16px;overflow:hidden;font-family:var(--sans,system-ui,sans-serif);margin:0 auto 18px;max-width:1440px}
+.sm-store button,.sm-compare button{font:inherit;color:inherit;cursor:pointer}
+.sm-store button:focus-visible,.sm-action:focus-visible,.sm-return-store:focus-visible{outline:3px solid #ffdf94;outline-offset:2px}
+.sm-store .icon,.sm-return-store .icon,.sm-action .icon{vertical-align:middle;flex:none;width:18px;height:18px}
+.sm-mast{position:relative;isolation:isolate;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;min-height:clamp(170px,22vw,260px);padding:22px clamp(20px,4vw,54px);background:linear-gradient(90deg,#05101ce6 0%,#1420276e 44%,#19202105 80%),url(shop-dusk.webp) 52% 50%/cover;border-bottom:1px solid #85704b}
+.sm-brand{display:inline-flex;gap:8px;align-items:center;color:#fbe1a5;letter-spacing:.09em;text-transform:uppercase;font-size:12px;font-weight:700;text-shadow:0 2px 4px #111}
+.sm-brand .icon{width:28px;height:20px}.sm-mast h1{font-family:Georgia,serif;font-size:clamp(38px,6.2vw,78px);font-weight:500;letter-spacing:-.045em;line-height:1.03;margin:7px 0 12px;color:#fff0cc;text-shadow:0 2px 10px #121619}
+.sm-hero-wallet{display:flex;align-items:center;gap:7px;color:#f9d795;font-size:13px;font-variant-numeric:tabular-nums}.sm-hero-wallet i{height:15px;width:1px;background:#ba9b60;margin:0 3px}
+.sm-depts{display:flex;gap:6px;border-bottom:1px solid #67583e;background:linear-gradient(180deg,#202d35,#101922);padding:9px clamp(10px,2vw,25px);overflow:auto}
+.sm-depts button,.sm-rail button{display:flex;align-items:center;gap:8px;border:1px solid transparent;border-radius:6px;background:transparent;padding:9px 13px;text-align:left;min-height:40px;font-weight:650;white-space:nowrap}
+.sm-depts button{color:#ead9ba}.sm-depts button.active,.sm-rail button.active{background:linear-gradient(115deg,#584329,#28251e);border-color:#c79c53;color:#ffe5ac;box-shadow:inset 0 0 8px #e4ad4140}
+.sm-store-body{display:grid;grid-template-columns:clamp(145px,16%,206px) minmax(0,1fr);min-height:420px}
+.sm-rail{padding:14px 9px;display:flex;flex-direction:column;gap:2px;background:linear-gradient(100deg,#16222c,#0b131c);border-right:1px solid #5c503d}
+.sm-rail .icon{color:#d5af70}.sm-rail button{font-size:13px}.sm-list{min-width:0;padding:14px clamp(10px,2vw,24px) 20px}
+.sm-list-head{display:flex;align-items:center;gap:10px;justify-content:space-between;margin:0 0 12px;scroll-margin:12px}
+.sm-list-head h2{font:500 clamp(22px,2.4vw,34px)/1.09 Georgia,serif;letter-spacing:-.03em;margin:0;color:#f1dfbb}
+.sm-list-head button,.sm-more,.sm-return-store{border:1px solid #6f6048;border-radius:6px;background:#19242b;padding:7px 10px;color:#e6c58e;font-size:12px}
+.sm-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(6px,1vw,14px)}
+.sm-product{--rarity:#c8bea4;position:relative;isolation:isolate;display:flex;flex-direction:column;min-width:0;overflow:hidden;border:1px solid #79664b;border-radius:10px;background:linear-gradient(145deg,#17242d,#101923 74%);box-shadow:inset 0 0 0 2px #c6a35c09}
+.sm-product[data-grade="2"]{--rarity:#9ec4a6}.sm-product[data-grade="3"]{--rarity:#8cc7fa}.sm-product[data-grade="4"]{--rarity:#c4a1f1}.sm-product[data-grade="5"]{--rarity:#e8c578}.sm-product[data-grade="6"]{--rarity:#f0a3a7}.sm-product[data-grade="7"]{--rarity:#a1dcde}
+.sm-store .sm-product-open{position:relative;display:flex;flex-direction:column;text-align:left;background:none;border:0;padding:0 0 7px;width:100%;min-width:0}
+.sm-art{height:clamp(110px,12.6vw,186px);width:100%;overflow:hidden;display:grid;place-items:center;background:radial-gradient(ellipse at 55% 65%,#546064 0%,#273641 44%,#15212a 76%,#101822 100%);border-bottom:1px solid #7169525e}
+.sm-art img,.sm-art equipment-color-art,.sm-art canvas{display:block;width:100%;height:100%;object-fit:contain;max-height:100%;transform:scale(.95);filter:drop-shadow(0 4px 5px #08101750)}
+.sm-product-title{padding:9px 10px 4px;max-width:100%}.sm-product-title small{font-size:10px;color:#c4b28e}.sm-product-title h3{font:600 clamp(15px,1.45vw,21px)/1.12 Georgia,serif;letter-spacing:-.02em;margin:2px 0;color:#f3e9d2;overflow-wrap:anywhere}
+.sm-tier{display:inline-flex;font-size:10px;line-height:1.5;color:var(--rarity,#e2c490);background:#101923;border:1px solid currentColor;border-radius:4px;padding:0 5px;margin:2px 10px}
+.sm-specs{flex:1;display:flex;gap:6px 12px;align-items:end;flex-wrap:wrap;padding:4px 10px 9px}.sm-specs span{font-size:10px;color:#c3c5c1;line-height:1.2}.sm-specs b{display:block;font-size:13px;color:#f1d293;font-weight:650;margin-top:3px}
+.sm-action{display:flex;gap:7px;align-items:center;justify-content:center;color:#ffe3a2;background:linear-gradient(180deg,#493b27,#2b261e);border:1px solid #9a7e4e;border-radius:5px;min-height:35px;font-weight:700;font-size:14px;margin:0 7px 7px;cursor:pointer}
+.sm-action .icon:last-child:not(:first-child){margin-left:auto}.sm-action .icon:first-child{width:16px}.sm-action:disabled{opacity:.68}
+.sm-pager{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:16px;color:#ddc49c;font-variant-numeric:tabular-nums}.sm-pager button{height:40px;width:44px;background:#182532;border:1px solid #806c49;border-radius:6px;font-size:23px}
+.sm-pager button:disabled{opacity:.4}.sm-more,.sm-return-store{margin:12px 0}
+.sm-compare{display:grid;grid-template-columns:40% minmax(0,1fr);min-height:190px;gap:16px;align-items:center}
+.sm-compare-art{position:relative;height:220px;overflow:hidden;border-radius:8px;background:radial-gradient(ellipse,#374b52,#0b1a23);display:grid;place-items:center}
+.sm-compare-art>img,.sm-compare-art>equipment-color-art,.sm-fit,.sm-fit>*,.sm-fit canvas{width:100%;height:100%;object-fit:contain;min-height:0}
+.sm-compare-data p{color:#e1d6c1}.sm-compare-data>small{color:#b6bfbd}.sm-compare-data dl{margin-bottom:0}.sm-compare-data dl div{display:flex;justify-content:space-between;gap:8px;border-top:1px solid #71634770;padding:5px 0}.sm-compare-data dd{margin:0;color:#f4ce85}.sm-compare-data em{font-style:normal;font-size:11px}.sm-compare-data .gain{color:#a4dcae}.sm-compare-data .loss{color:#e49c89}.sm-set .sm-action{margin-top:auto}.sm-set .sm-product-title{padding-bottom:12px}
+body.sm-player[data-shore-view="gear"] .v35-preview{isolation:isolate;position:relative;background:linear-gradient(0deg,#08111c 2%,#0f1b2399 25%,#0a182318 68%,#0e1825a8 100%),url(../creator-art/lake.webp) center/cover;border-color:#987d53!important;border-radius:12px}
+body.sm-player[data-shore-view="gear"] .v35-preview-caption{color:#f4d08c;text-shadow:0 2px 12px #00101d}
+body.sm-player[data-shore-view="gear"] .sm-score{position:absolute;top:78px;left:8px;display:flex;align-items:center;gap:5px;border:1px solid #927747;border-radius:5px;padding:5px 7px;background:#101722d6;color:#edca86;pointer-events:none}
+.sm-score span{font-size:9px}.sm-score b{display:block;font-size:16px}
+body.sm-player:is([data-shore-view="gear"],[data-shore-view="shop"]) #v35MenuContent :is(.panel,.ncx-profile-card,.ncg-collection-head,.kit367){background:linear-gradient(140deg,#1c2a34,#101b26);border-color:#77684a;border-radius:11px}
+body.sm-player[data-shore-view="gear"] :is(.equip-card,.inv-tile,.ncg-equipped-slot,.catch-row){border-color:#6f614a!important;background:linear-gradient(125deg,#222f39,#111e29)!important;color:#eddfc2}
+body.sm-player[data-shore-view="gear"] .equipment-panel .equip-card{display:grid;grid-template-columns:32% minmax(0,1fr);min-height:110px;gap:8px;text-align:left;align-items:center;padding:8px}
+body.sm-player[data-shore-view="gear"] .equipment-panel .equip-card .gear-art{width:100%;height:85px}
+body.sm-player[data-shore-view="gear"] .equip-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+body.sm-player[data-shore-view="gear"] .ncx-profile-card-art{display:none}
+body.sm-player[data-shore-view="gear"] .ncx-profile-card{min-height:0!important;display:block!important;padding:10px 14px}
+body.sm-player[data-shore-view="gear"] .ncx-profile-card-info{display:flex!important;align-items:center;flex-wrap:wrap;gap:5px 13px}
+body.sm-player[data-shore-view="gear"] .ncx-profile-card-info>*{margin:0!important}
+body.sm-player[data-shore-view="gear"] .ncx-profile-card-info>[data-ncg]{width:auto}
+body.sm-player .sm-return-store{display:inline-flex;align-items:center;gap:7px}
+body.sm-player[data-shore-view="shop"] :is(.goods367,.ncg-card,.product-card,.v34-boat-card){border-color:#806d4f;background:linear-gradient(145deg,#1c2c35,#111b25);color:#eee0c3}
+body.sm-player[data-shore-view="map"] .v35-menu-layout>.v35-preview{display:none!important}
+body.sm-player[data-shore-view="map"] .v35-menu-layout{display:block!important;max-width:1360px;margin:auto}
+body.sm-player[data-shore-view="map"] #v35MenuContent{width:100%;max-width:none}
+@media(max-width:900px){.sm-store-body{grid-template-columns:132px minmax(0,1fr)}.sm-rail{padding:10px 5px}.sm-rail button{padding:7px 5px}.sm-list{padding:10px}.sm-art{height:110px}}
+@media(max-width:710px){
+.sm-mast{min-height:155px;background-position:60% 51%;padding:16px}.sm-store{border-radius:10px}.sm-depts{padding:5px;gap:2px}.sm-depts button{font-size:12px;padding:5px 7px;gap:4px;min-height:42px}.sm-depts .icon{width:14px}
+.sm-store-body{display:block}.sm-rail{display:flex;flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid #685a42;padding:5px;scrollbar-width:thin}.sm-rail button{font-size:12px;min-height:40px;padding:4px 7px}.sm-list-head h2{font-size:21px}.sm-list{padding:10px 7px}.sm-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.sm-art{height:clamp(100px,25vw,155px)}.sm-product-title h3{font-size:16px}.sm-list-head button{font-size:10px}.sm-specs{padding:4px 7px 8px}.sm-action{min-height:40px}
+.sm-compare{grid-template-columns:36% 1fr;gap:8px}.sm-compare-art{height:175px}.sm-compare-data{font-size:12px}
+body.sm-player.nb-navigation:not(.nm-fishing-focus) #appNav.side-nav{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:1px!important}
+body.sm-player.nb-navigation #appNav .nb-nav-button{padding-inline:1px!important;font-size:9px!important;min-width:0!important}
+body.sm-player.nb-navigation #appNav .nb-nav-button span{font-size:clamp(8px,2.4vw,12px)!important}
+body.sm-player[data-shore-view="gear"][data-shore-gear="equipment"]:not(.show-fit367) .v35-menu-layout>.v35-preview{display:flex!important;flex-direction:column;align-items:center;position:relative!important;inset:auto!important;width:100%!important;height:240px!important;min-height:0!important;padding:4px!important;margin-bottom:8px;overflow:hidden}
+body.sm-player[data-shore-view="gear"][data-shore-gear="equipment"]:not(.show-fit367) .v35-preview #avatarPreview{display:block!important;position:relative!important;width:165px!important;height:178px!important;min-height:0!important}
+body.sm-player[data-shore-view="gear"][data-shore-gear="equipment"]:not(.show-fit367) .v35-preview :is(.mobile-fit-close367,.carry367,#rodLabel367,#v35FittingStatus,.v35-preview-foot){display:none!important}
+body.sm-player[data-shore-view="gear"] .equipment-panel .equip-card{min-height:110px;grid-template-columns:1fr;gap:2px;text-align:center}.sm-player[data-shore-view="gear"] .equipment-panel .equip-card .gear-art{height:67px}.sm-player[data-shore-view="gear"] .equipment-panel .button{margin:auto}
+}
+@media(min-width:711px){body.sm-player.nb-navigation #appNav.side-nav{display:flex!important;justify-content:center}body.sm-player.nb-navigation #appNav .nb-nav-button{max-width:165px;flex:1}}
+.sm-mast{min-height:clamp(155px,17vw,215px);overflow:hidden}
+.sm-mast-figure{position:absolute;z-index:-1;height:100%;width:32%;inset:0 7% 0 auto;pointer-events:none;overflow:hidden}
+.sm-mast-figure canvas{display:block;position:absolute;top:3%;left:50%;transform:translateX(-50%);width:auto;height:350%;max-width:none;filter:drop-shadow(0 1px 6px #1d1c2288)}
+.sm-store .sm-art{position:relative;isolation:isolate;background:linear-gradient(140deg,#152329a8,#16242be8 78%),url(shop-dusk.webp) 65% 57%/cover}
+.sm-store .sm-art>img,.sm-store .sm-art>equipment-color-art{position:absolute;inset:0;object-fit:contain;object-position:center}
+.sm-store .sm-tier{align-self:flex-start}.sm-store .sm-product .sm-action{background:linear-gradient(115deg,#b98c4d,#d4b26f);color:#251c0f;border-color:#d4b583}
+.sm-gem{color:#9ddde9;font-size:1.05em;text-shadow:0 1px #376c79}
+@media(min-width:711px){body.sm-player.nb-navigation #appNav.side-nav{flex-direction:row!important;align-items:center!important}.sm-store .sm-art{height:clamp(105px,10vw,155px)}}
+@media(max-width:710px){.sm-mast-figure{right:-6%;width:48%}.sm-mast-figure canvas{height:280%}.sm-mast h1{font-size:clamp(27px,7.7vw,42px)}}
+.sm-store .sm-art img.sm-rod-detail{width:100%;height:100%;object-fit:cover;object-position:34% 50%;transform:none;filter:none}
+.sm-compare-art>.sm-rod-detail{object-fit:cover}
+.sm-worn-bonuses{display:none}
+body.sm-player[data-shore-view="map"] .nm-preview-open,body.sm-player[data-shore-view="gear"][data-shore-gear="equipment"] .nm-preview-open{display:none!important}
+@media(max-width:710px){
+body.sm-player[data-shore-view="gear"][data-shore-gear="equipment"]:not(.show-fit367) .v35-menu-layout>.v35-preview{display:grid!important;grid-template-columns:minmax(115px,49%) minmax(0,1fr)!important;grid-template-rows:1fr 1fr 2fr!important;align-items:center!important;height:285px!important;padding:9px 10px!important;text-align:left}
+body.sm-player[data-shore-view="gear"][data-shore-gear="equipment"]:not(.show-fit367) .v35-preview #avatarPreview{display:block!important;grid-area:1/1/4/2!important;width:100%!important;height:265px!important;align-self:center!important}
+body.sm-player[data-shore-view="gear"][data-shore-gear="equipment"]:not(.show-fit367) #avatarPreview wardrobe-figure{height:100%!important;min-height:0!important}
+body.sm-player[data-shore-view="gear"][data-shore-gear="equipment"]:not(.show-fit367) #avatarPreview canvas{width:100%!important;height:calc(100% - 40px)!important;object-fit:contain!important;display:block}
+body.sm-player[data-shore-view="gear"][data-shore-gear="equipment"] .v35-preview .v35-preview-caption{position:static!important;grid-area:1/2;align-self:end;text-align:left}
+body.sm-player[data-shore-view="gear"][data-shore-gear="equipment"] .v35-preview .sm-score{position:static;grid-area:2/2;justify-self:start}
+body.sm-player[data-shore-view="gear"][data-shore-gear="equipment"] .v35-preview .sm-worn-bonuses{align-self:start;grid-area:3/2;display:grid;gap:5px;background:#13212adc;padding:9px;border:1px solid #78664a;border-radius:6px;color:#f2e5cb;font-size:11px}
+.sm-worn-bonuses strong{font-weight:650;color:#f2cc86;font-size:12px}.sm-worn-bonuses span{display:flex;justify-content:space-between;gap:6px}.sm-worn-bonuses b{color:#f0c67a}
+body.sm-player[data-shore-view="gear"][data-shore-gear="equipment"]:not(.show-fit367) .v35-preview>details{display:none!important}
+}
