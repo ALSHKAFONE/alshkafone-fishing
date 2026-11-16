@@ -97,8 +97,10 @@
     const key=JSON.stringify([g,angle,colors,e?.jacket,e?.pants,e?.boots,customGlove,angle===2?p.hairColor:0,angle===2?p.age:35,angle===2?p.hair:null]);
     return cached(bodies,key,async()=>{
       const src=await load(g+'-'+(angle>=4?'turn'+(2*(angle-4)+1):angle%2?'collar'+angle:angle));
-      if(!colors.some(Boolean)&&!customGlove&&angle!==2)return src;
-      const c=canvas(420,1000),ctx=c.getContext('2d',{willReadFrequently:true});ctx.drawImage(src,0,0);
+      // Align every body with the face and clothing masks, including resized VK images.
+      const c=canvas(420,1000),ctx=c.getContext('2d',{willReadFrequently:true});
+      ctx.drawImage(src,0,0,c.width,c.height);
+      if(!colors.some(Boolean)&&!customGlove&&angle!==2)return c;
       const im=ctx.getImageData(0,0,c.width,c.height),d=im.data;
       const purchased=[e?.jacket,e?.pants,e?.boots].map((id,i)=>id&&id!==['jacket_classic','pants_basic','boots_basic'][i]?id:null);
       const slots=['jacket','pants','boots'];
