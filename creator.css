@@ -1,0 +1,78 @@
+/* Scoped to the lakeside editor. Other game screens keep their own layout. */
+body.af-internal-scroll:has(#screen .pc-editor) :is(.topbar,#appNav,.screen-foot,.next-breadcrumbs,.base-breadcrumbs),body:has(#screen .pc-editor) #appNav{display:none!important}
+body.af-internal-scroll:has(.pc-editor)>.app-shell{width:100%!important;max-width:none!important;padding:0!important;margin:0!important}
+body.af-internal-scroll:has(.pc-editor) #screen{height:100%!important;max-width:none!important;padding:0!important;overflow:hidden!important}
+.pc-editor{position:fixed;inset:0;z-index:24;isolation:isolate;color:#f6f4eb;background:#162c31;font:500 14px/1.25 system-ui,-apple-system,"Segoe UI",sans-serif;--gold:#ffc142;--edge:rgba(173,194,189,.28);--ink:#0b2026;--sun:#ffc229}
+.pc-editor *, .pc-editor *:before,.pc-editor *:after{box-sizing:border-box}
+.pc-editor h1,.pc-editor h2,.pc-editor h3,.pc-editor p,.pc-editor output,.pc-editor input,.pc-editor button{font-family:inherit}
+.pc-scenery{position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,#07111231,transparent 28%,transparent 80%,#08121250),var(--pc-lake,url('creator-art/lake.webp')) center center/cover no-repeat}
+.pc-wrap{height:100%;width:min(100%,1550px);margin:auto;position:relative;display:grid;grid-template-columns:clamp(68px,6.9vw,104px) minmax(240px,.94fr) minmax(430px,1.05fr);grid-template-rows:75px 1fr;column-gap:clamp(8px,1.6vw,28px);padding:clamp(9px,2.3vh,23px) clamp(12px,3.5vw,57px) max(10px,2.5vh)}
+.pc-brand{grid-column:1/3;grid-row:1;align-self:start;justify-self:start;z-index:2;display:flex;align-items:center;gap:9px;color:#fff;text-align:left;filter:drop-shadow(0 2px 6px #08202a);background:linear-gradient(90deg,#10252ac9,#10252a70 75%,transparent);padding:5px 25px 6px 6px;border-radius:8px}
+.pc-brand img{width:clamp(44px,4.4vw,70px);height:auto}.pc-brand strong,.pc-brand small{display:block}.pc-brand strong{font-weight:850;font-size:clamp(24px,2.7vw,41px);line-height:1.01;letter-spacing:-.045em}.pc-brand small{font-size:clamp(9px,.92vw,13px);letter-spacing:.17em;font-weight:740;margin-top:4px}.pc-brand em{font-style:normal;letter-spacing:.04em;opacity:.84}
+.pc-menu{grid-column:1;grid-row:2;align-self:start;width:100%;border:1px solid var(--edge);border-radius:12px;overflow:hidden;background:linear-gradient(135deg,#14292df2,#071922ed);box-shadow:0 9px 26px #00101548;z-index:4;margin-top:10px}
+.pc-editor button{position:relative;min-width:0;min-height:0;letter-spacing:0;outline-offset:2px;box-shadow:none;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;appearance:none;font:inherit;color:inherit}
+.pc-editor button:focus-visible,.pc-editor input:focus-visible{outline:2px solid #ffe19b}
+.pc-menu button{background:transparent;border:0;border-bottom:1px solid #e6f6e514;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:7px;width:100%;padding:clamp(10px,1.9vh,20px) 2px;color:#dddcd0;font-size:clamp(9px,.88vw,13px);border-radius:0}
+.pc-menu button:last-child{border-bottom:0}.pc-menu .icon{width:clamp(23px,2.1vw,33px);height:clamp(23px,2.1vw,33px)}
+.pc-editor .icon{stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none;display:block}
+.pc-menu button[aria-pressed=true]{color:#ffd076;background:linear-gradient(110deg,#9d6d1359,#43300b1a);box-shadow:inset 3px 0 #ffc442,inset 0 1px #ffdb7a99,inset 0 -1px #eab5508c}
+.pc-stage{grid-column:2;grid-row:1/-1;position:relative;align-self:stretch;min-width:0;pointer-events:none}
+.pc-model{position:absolute;inset:clamp(40px,6vh,65px) -12% clamp(43px,5.7vh,62px);display:grid;place-items:center;touch-action:pan-y;pointer-events:auto;user-select:none}
+.pc-model:before{content:"";position:absolute;bottom:1%;width:57%;height:2.8%;background:#16160d90;filter:blur(7px);border-radius:50%;transform:rotate(-7deg)}
+pier-figure{display:block;height:100%;width:100%;min-width:0;min-height:0}pier-figure canvas{width:100%;height:100%;object-fit:contain;display:block}
+.pc-model pier-figure{position:relative;filter:drop-shadow(1px 3px 2px #23190764);transition:opacity .15s}
+.pc-closeup .pc-model{inset:clamp(56px,9vh,84px) -6% 54px;overflow:hidden;border-radius:18px;background:linear-gradient(180deg,#183b3b4a,#1227251f)}
+.pc-closeup .pc-model:before{display:none}.pc-closeup .pc-model pier-figure{position:relative;inset:auto;height:100%;width:100%}
+.pc-closeup .pc-model canvas{object-position:center}
+.pc-rotate,.pc-zoom{position:absolute;bottom:0;border:1px solid #e3d8a967;border-radius:999px;background:#152225d9;box-shadow:0 4px 12px #071c2450;pointer-events:auto}
+.pc-rotate{left:50%;transform:translateX(-50%);height:39px;padding:0 4px;display:flex;align-items:center;white-space:nowrap;font-size:12px;color:#fff7e1}
+.pc-rotate button,.pc-zoom{border:0;color:#fff5dc}.pc-rotate button{width:36px;height:36px;font-size:30px;line-height:1;background:none}.pc-rotate span{min-width:75px;text-align:center}
+.pc-editor .pc-zoom{background:#152225dd;border:1px solid #e3d8a967;right:0;width:39px;height:39px;display:grid;place-items:center}.pc-zoom svg{width:19px;height:19px}
+.pc-panel{grid-column:3;grid-row:1/-1;align-self:center;display:flex;flex-direction:column;min-width:0;min-height:0;max-height:100%;overflow:hidden;border:1px solid #aebcaa72;border-radius:19px;background:linear-gradient(140deg,#17333beb,#091c22f6 80%);color:#f6f3e8;box-shadow:0 16px 52px #04121754,inset 0 1px 1px #d2dccc30;text-align:left}
+.pc-panel-head{display:flex;align-items:center;gap:11px;background:linear-gradient(90deg,#071b21b8,#10293255);border-bottom:1px solid var(--edge);padding:clamp(11px,1.7vh,21px) clamp(14px,2.1vw,29px);color:#f9cc77}
+.pc-panel-head>.icon{width:28px;height:28px;color:#ffbd31}.pc-panel h1{color:inherit;font-size:clamp(19px,2.05vw,32px);font-weight:780;letter-spacing:-.045em;line-height:1.07;margin:0}
+.pc-panel .pc-cancel{font-size:12px;margin-left:auto;border:0;background:transparent;color:#d7d1bf}
+.pc-scroll{min-height:0;overflow:auto;overscroll-behavior-y:contain;scrollbar-width:thin;scrollbar-color:#53665e #14282a}
+.pc-field{display:grid;grid-template-columns:clamp(91px,9vw,136px) minmax(0,1fr);align-items:center;gap:8px;padding:clamp(5px,.90vh,10px) clamp(13px,1.6vw,25px);border-bottom:1px solid #dcf6f114}
+.pc-field>span,.pc-field>label,.pc-gear h3,.pc-pane h3{font-weight:660;font-size:clamp(12px,1.05vw,16px);letter-spacing:-.02em;margin:0;color:#f2f0e7}
+.pc-name input{width:100%;min-height:28px;height:clamp(28px,3.4vh,37px);font-size:14px;color:#f4eee3;background:#0a2026ab;border:1px solid var(--edge);border-radius:6px;padding:0 11px;margin:0}
+.pc-gender,.pc-choices,.pc-kitstrip,.pc-step{display:grid;gap:clamp(4px,.52vw,9px)}
+.pc-gender{grid-template-columns:repeat(2,minmax(0,1fr))}.pc-gender button,.pc-step button,.pc-kit-options button{background:linear-gradient(#213b43,#10272e);border:1px solid var(--edge);border-radius:7px;min-height:clamp(30px,3.8vh,40px);font-size:clamp(11px,.98vw,15px);font-weight:650}
+.pc-gender button b{font-size:1.24em;margin-right:5px}.pc-gender button[aria-pressed=true],.pc-primary{background:linear-gradient(#ffd044 4%,#f5a814 100%)!important;color:#35250d!important;border:1px solid #ffe195!important;box-shadow:0 0 8px #ffba3f55,inset 0 1px #fff0bf!important}
+.pc-step{grid-template-columns:38px 1fr 38px;align-items:center;background:#10262bc4;border:1px solid var(--edge);border-radius:7px;text-align:center;gap:0}.pc-step output{font:650 15px/1.2 system-ui;color:#f5ebd2}.pc-step button{border:0;font-size:24px;line-height:1}.pc-step button:disabled{opacity:.35}
+.pc-choices,.pc-kitstrip{grid-template-columns:repeat(var(--choices,5),minmax(0,1fr))}
+.pc-choices button,.pc-kitstrip button{padding:2px;width:100%;min-width:0;overflow:hidden;border:1px solid var(--edge);border-radius:8px;background:linear-gradient(140deg,#243b41,#10232b);display:grid;place-items:center;height:clamp(39px,6.8vh,78px)}
+.pc-choices button img,.pc-kitstrip button img{display:block;width:100%;height:100%;min-height:0;object-fit:cover;border-radius:5px}
+.pc-choices[aria-label="Тип лица"] img,.pc-choices.pc-hairs button[data-key="hair"] img{object-fit:contain;object-position:center 37%;background:radial-gradient(ellipse at 50% 80%,#647171,#172a30)}
+.pc-choices[aria-label="Цвет волос"] button{height:clamp(28px,4.1vh,43px)}
+.pc-choices[aria-label="Цвет глаз"] button,.pc-choices[aria-label="Борода / щетина"] button{height:clamp(32px,4.8vh,52px)}
+.pc-choices button[aria-pressed=true],.pc-kitstrip button[aria-pressed=true],.pc-kit-options button[aria-pressed=true]{outline:2px solid #ffbf40;outline-offset:-2px;border-color:#fff0ae;box-shadow:0 0 8px #f9bc3366}
+.pc-gear,.pc-pane{padding:clamp(8px,1.5vh,20px) clamp(13px,1.6vw,25px)}.pc-gear h3,.pc-pane h3{margin:0 0 9px}.pc-gear h3 small{font-size:.88em;color:#d5d8cc}
+.pc-kitstrip button{height:clamp(40px,7.9vh,89px)}.pc-kitstrip img{object-fit:contain!important}
+.pc-actions{display:flex;flex:none;align-items:stretch;justify-content:space-between;gap:10px;padding:clamp(8px,1.3vh,16px) clamp(13px,1.6vw,25px);border-top:1px solid #e6f0c51c;background:#0b1d22dc}
+.pc-actions button{height:clamp(36px,5.25vh,57px);font-weight:750;display:flex;align-items:center;justify-content:center;gap:7px;border-radius:10px;font-size:clamp(12px,1.2vw,18px)}
+.pc-random{background:linear-gradient(#2b4144,#192c30);border:1px solid var(--edge);flex:1}.pc-primary{flex:1.35}.pc-actions .icon{height:20px;width:20px}
+.pc-data-row{display:flex;align-items:center;gap:12px;min-height:74px;border-top:1px solid var(--edge);padding:10px 0}.pc-data-row>img,.pc-data-row>i{width:54px;height:54px;object-fit:contain;border-radius:6px;background:#0c2228;display:grid;place-items:center}.pc-data-row .icon{width:25px;height:25px;color:var(--gold)}.pc-data-row b,.pc-data-row small{display:block}.pc-data-row small{font-size:12px;color:#c3cfc8;margin-top:4px}
+.pc-pane{min-height:min(54vh,430px)}.pc-kit-options{margin-top:10px}.pc-kit-options>span{font-weight:650;font-size:13px}.pc-kit-options>div{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}.pc-kit-options button{display:flex;align-items:center;gap:4px;font-size:11px;padding:4px 8px}.pc-kit-options i{width:13px;height:13px;border-radius:50%;border:1px solid #dfdfb763}
+.pc-error:not([hidden]){padding:4px 15px;color:#ffe1a7;background:#56351b}.pc-error[hidden]{display:none}
+.ncx-profile-card-art pier-figure,.ncx-full-figure pier-figure{min-height:160px;height:100%;max-height:68vh}
+@media(hover:hover){.pc-editor button:hover{filter:brightness(1.13)}}
+@media(min-width:761px) and (max-height:640px){.pc-wrap{grid-template-rows:51px 1fr}.pc-menu button{padding:6px 0;gap:3px}.pc-panel{align-self:stretch}.pc-panel-head{padding:8px 15px}.pc-menu{margin-top:2px}.pc-field{padding-block:5px}.pc-scenery{background-position:center 65%}}
+@media(max-width:760px) and (orientation:portrait){
+ .pc-wrap{display:flex;flex-direction:column;gap:0;padding:0}.pc-scenery{inset:0 0 auto;height:45%;background-position:center 70%}
+ .pc-brand{position:absolute;top:max(5px,env(safe-area-inset-top));left:5px;padding:4px 10px 5px 3px;gap:3px;border-radius:5px}.pc-brand img{width:31px}.pc-brand strong{font-size:19px}.pc-brand small{font-size:7px;letter-spacing:.10em;margin-top:2px}
+ .pc-menu{position:absolute;left:5px;top:52px;margin:0;width:54px;border-radius:8px}.pc-menu button{gap:2px;font-size:7.5px;height:clamp(29px,4.8dvh,42px);padding:1px}.pc-menu .icon{width:17px;height:17px}
+ .pc-stage{flex:0 0 clamp(224px,37.5dvh,370px);width:100%;margin:0}.pc-model{inset:5px 10% 22px 13%}.pc-rotate{left:auto;right:9px;bottom:7px;transform:none;height:28px;font-size:10px}.pc-rotate button{width:27px;height:26px;font-size:22px}.pc-rotate span{min-width:60px}
+ .pc-editor .pc-zoom{top:10px;bottom:auto;right:9px;width:33px;height:33px}.pc-closeup .pc-model{inset:23px -7% 0 2%;background:transparent;border-radius:0}
+ .pc-panel{margin:0;flex:1 1 0;max-height:none;width:100%;border-radius:15px 15px 0 0;background:linear-gradient(145deg,#19363d,#0a1e25 85%);border-bottom:0}.pc-panel-head{padding:8px 13px;min-height:38px;gap:8px}.pc-panel-head>.icon{height:18px;width:18px}.pc-panel h1{font-size:19px}.pc-scroll{flex:1}.pc-field{grid-template-columns:88px minmax(0,1fr);gap:6px;padding:5px 12px}.pc-field>span,.pc-field>label{font-size:12px}.pc-choices{gap:4px}.pc-choices button{height:43px}.pc-choices[aria-label="Цвет волос"] button{height:29px}.pc-choices[aria-label="Цвет глаз"] button,.pc-choices[aria-label="Борода / щетина"] button{height:31px}
+ .pc-gear,.pc-pane{padding:9px 12px}.pc-kitstrip button{height:48px}.pc-pane{min-height:0}.pc-actions{padding:7px 11px max(8px,env(safe-area-inset-bottom));gap:7px}.pc-actions button{height:39px;font-size:12px}.pc-actions svg{width:16px;height:16px}
+}
+@media(max-height:520px) and (orientation:landscape){.pc-wrap{grid-template-columns:53px minmax(145px,.85fr) minmax(290px,1.05fr);grid-template-rows:44px 1fr;padding:5px 9px;gap:4px}.pc-menu{margin:0}.pc-menu button{font-size:7px;padding:4px 0;gap:2px}.pc-menu .icon{width:17px;height:17px}.pc-brand{padding:2px;gap:4px}.pc-brand img{width:30px}.pc-brand strong{font-size:18px}.pc-brand small{font-size:6px}.pc-panel{align-self:stretch;border-radius:11px}.pc-panel-head{padding:5px 10px}.pc-panel-head>.icon{width:17px;height:17px}.pc-panel h1{font-size:17px}.pc-field{padding:4px 9px;grid-template-columns:83px 1fr}.pc-stage .pc-model{inset:20px 0 27px}.pc-rotate{height:26px}.pc-rotate button{height:24px;width:24px;font-size:19px}.pc-editor .pc-zoom{width:26px;height:26px}.pc-rotate span{font-size:9px;min-width:58px}.pc-actions{padding:5px 9px}.pc-actions button{height:29px;font-size:10px}.pc-choices button{height:34px}}
+.pc-owned-figure{height:100%;min-height:0;position:relative;display:flex;flex-direction:column}.pc-owned-figure pier-figure{flex:1 1 auto;min-height:0}.pc-owned-turn{display:flex;justify-content:center;gap:8px}.pc-owned-turn button{padding:2px 14px;border:1px solid #748c82;border-radius:7px;background:#172b31;color:#f7d995;font-size:20px;cursor:pointer}.ncx-full-figure .pc-owned-figure{height:min(62vh,560px)}pier-portrait{display:inline-block}pier-portrait canvas{width:100%;height:100%;object-fit:contain}
+.pc-editor .pc-zoom{position:absolute}.pc-model pier-figure{filter:drop-shadow(1px 2px 1px #23190738)}
+.pc-choices[aria-label="Цвет волос"] img{transform:scale(1.09)}
+
+.pc-editor .pc-register-note{flex:none;margin:0;padding:6px 13px 0;color:#ccd9d2;font-size:12px;line-height:1.25}
+.pc-register-note~.pc-actions{border-top:0}
+.restart-label{display:block;margin-top:16px}.restart-input{margin-top:6px;width:100%;max-width:22em;padding:10px;color:inherit;background:#112831;border:1px solid #778a86;border-radius:8px;font:inherit}
+[data-career="confirm"]:disabled{opacity:.45;cursor:default}.restart-setting{margin-top:20px}
