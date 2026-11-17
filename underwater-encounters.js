@@ -136,5 +136,38 @@
       dip:steal?Math.sin(Math.PI*ease(t,3.15,4.12))*1.27:0
     };
   }
-  window.PierWaterEncounters=Object.freeze({choose,interest,layer,worm,surface,baitNudge,sediment});
+  // Draw one response per fish. Tapping repeatedly cannot reroll the strike.
+  function newChase(roll){
+    return {stage:'seek',time:0,stageTime:0,wound:0,roll};
+  }
+  function advanceChase(c,playing,dt){
+    c.time+=dt;c.stageTime+=dt;
+    function enter(stage){c.stage=stage;c.stageTime=0;}
+    if(c.stage==='seek'){
+      c.wound=playing?c.wound+dt:Math.max(0,c.wound-dt*.5);
+      if(c.wound>=1.6)enter('follow');
+      else if(c.time>=12)enter('leave');
+    }else if(c.stage==='follow'){
+      if(!playing)enter(c.roll<.78?'strike':'leave');
+      else if(c.stageTime>=5)enter(c.roll<.18?'strike':'leave');
+    }else if(c.stage==='strike'&&c.stageTime>=.65)return 'bite';
+    else if(c.stage==='leave'&&c.stageTime>=1.65)return 'miss';
+    return '';
+  }
+  function chasePose(c){
+    const t=c.stageTime;
+    if(c.stage==='strike')return {stage:'approach',distance:.13*(1-ease(t,0,.54)),turn:1,vertical:0,fast:true,label:'Бросок к блесне'};
+    if(c.stage==='leave')return {stage:'leave',distance:.14+1.2*ease(t,0,1.65),turn:-1,vertical:.12*ease(t,0,1.5),fast:true,label:'Развернулся и ушёл в укрытие'};
+    if(c.stage==='follow')return {stage:'inspect',distance:.13+.018*Math.sin(t*4),turn:1,vertical:.014,fast:false,label:'Идёт за блесной · попробуй паузу'};
+    return {stage:'approach',distance:.13+.92*(1-ease(c.wound,0,1.6)),turn:1,vertical:.04,fast:false,label:c.wound?'Догоняет блесну':'У коряги · начни проводку'};
+  }
+  function drawSpoon(g,x,y,time,playing,reduced,pink){
+    const flash=reduced?.5:.5+.5*Math.sin(time*(playing?9:3));
+    g.save();g.translate(x,y);g.rotate(playing?-.72:-.25);
+    const width=2.2+flash*1.8,metal=g.createLinearGradient(-width,0,width,0);
+    metal.addColorStop(0,pink?'#762349':'#78502b');metal.addColorStop(.43,pink||'#d5a551');metal.addColorStop(.65,'#fff1ca');metal.addColorStop(1,pink||'#ac7947');
+    g.fillStyle=metal;g.beginPath();g.ellipse(0,0,width,7,0,0,2*Math.PI);g.fill();
+    g.strokeStyle='#403b32';g.lineWidth=.85;g.stroke();g.fillStyle='#605241';g.beginPath();g.arc(0,-4.6,.7,0,2*Math.PI);g.fill();g.restore();
+  }
+  window.PierWaterEncounters=Object.freeze({choose,interest,layer,worm,surface,baitNudge,sediment,newChase,advanceChase,chasePose,drawSpoon});
 })();
