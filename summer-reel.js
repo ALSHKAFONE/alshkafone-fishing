@@ -14,7 +14,7 @@
  }
  function cut(image,rect,outline){
    const [x,y,w,h]=rect,c=surface(w,h),g=c.getContext('2d');
-   g.translate(-x,-y);shape(g,outline);g.clip();g.drawImage(image,0,0);
+   g.translate(-x,-y);shape(g,outline);g.clip();g.drawImage(image,0,0,width,height);
    return {canvas:c,x,y};
  }
  function paintPart(g,part){g.drawImage(part.canvas,part.x,part.y);}
@@ -27,7 +27,7 @@
  const rotorFoot=[[627,776],[635,782,638,785,642,782],[649,780,655,764,660,756],[663,750,666,743,671,737],[676,730,687,732,692,738],[699,745,694,753,686,758],[680,761,675,761,672,766],[665,776,658,788,652,794],[646,802,635,803,630,798],[625,793,624,784,627,776]];
  const lever=[[629,835],[637,832,643,836,649,833],[662,825,680,807,692,795],[694,787,696,782,702,779],[709,776,717,780,719,785],[720,791,718,796,715,800],[707,804,701,801,698,805],[685,814,668,833,655,852],[653,862,648,868,640,868],[626,870,620,844,629,835]];
  function prepare(image){
-   const fixed=surface(1024,683),g=fixed.getContext('2d');g.scale(1024/width,683/height);g.drawImage(image,0,0);
+   const fixed=surface(1024,683),g=fixed.getContext('2d');g.scale(1024/width,683/height);g.drawImage(image,0,0,width,height);
    g.save();g.setTransform(1,0,0,1,0,0);g.globalCompositeOperation='destination-out';const clear=[[545,643],[700,622],[1537,622],[1537,1025],[509,1025],[495,886],[495,848],[502,795],[515,749],[521,690]];shape(g,clear.map(([x,y])=>[x*1024/width,y*683/height]));g.fill();g.restore();
    paintPart(g,cut(image,[463,660,200,240],casing));
    // The black rotor cup is almost circular. Its own photo closes the spindle
@@ -99,7 +99,8 @@
    let s=states.get(photo);
    if(!s){
      if(!moving)return;
-     const layer=surface(1024,683);layer.className=photo.className;layer.setAttribute('aria-hidden','true');
+     const renderWidth=Math.min(1024,Math.max(384,Math.round(photo.clientWidth*(window.devicePixelRatio||1))));
+     const layer=surface(renderWidth,Math.round(renderWidth*height/width));layer.className=photo.className;layer.setAttribute('aria-hidden','true');
      layer.style.pointerEvents='none';photo.after(layer);
      s={layer,phase:0,dirty:true,parts:null,painted:-1};states.set(photo,s);
      photo.addEventListener?.('load',()=>{s.dirty=true;});

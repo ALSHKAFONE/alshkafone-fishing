@@ -9,8 +9,13 @@
   function fade(t, start, end) { return ease(t,start,start+.45)*(1-ease(t,end-.5,end)); }
 
   function choose(pool, target, mayLoseWorm, roll, variation) {
-    if (roll < .56 || !pool.length) return null;
+    if (roll < .36 || !pool.length) return null;
     const seed = variation * Math.PI * 2;
+    if (roll < .56) {
+      const bottomFeeder=['crucian','bream','carp','tench','gudgeon','ruffe','silverbream'].includes(target);
+      if (bottomFeeder && roll < .48) return {kind:'forage',duration:5.6,seed};
+      return {kind:'probe',duration:5.6,seed};
+    }
     const small = ['bleak','roach','rudd','dace','ruffe','perch'].find(id=>pool.includes(id)) || target;
     if (roll < .76) {
       const intruder = ['pike','zander','perch','asp','carp','bream'].find(id=>id!==target&&pool.includes(id)) || pool.find(id=>id!==target);
@@ -22,6 +27,18 @@
   function interest(event,t) {
     if (!event || t<0 || t>=event.duration) return null;
     let distance=.1,turn=1,vertical=0,label='Приближается',fast=false;
+    if (event.kind==='forage') {
+      const down=ease(t,.45,2.2)*(1-ease(t,3.35,5.3));
+      distance=1.05-.8*ease(t,0,2.2)-.21*ease(t,3.35,5.6);
+      return {stage:'inspect',distance,turn:1,vertical:0,bottom:down,tilt:.27*down,
+        label:t<3.4?'Ищет корм у дна':'Поднимается к наживке'};
+    }
+    if (event.kind==='probe') {
+      const recoil=ease(t,2.65,3.55);
+      distance=1.2*(1-ease(t,0,2.2))+.16*recoil-.14*ease(t,3.8,5.6);
+      const label=t<2.2?'Присматривается к наживке':t<2.85?'Касается наживки':t<3.8?'Отходит на длину тела':'Возвращается к крючку';
+      return {stage:'inspect',distance,turn:1,vertical:.035*recoil*(1-ease(t,3.8,5.6)),label};
+    }
     if(t<2.25) distance=1.32-1.22*ease(t,0,2.25);
     else if(event.kind==='scare'){
       if(t<3.3){distance=.1-.065*ease(t,2.25,3.25);label='Присматривается к наживке';}
@@ -74,6 +91,26 @@
       g.restore();
     }
   }
+  function baitNudge(event,t) {
+    if(event?.kind!=='probe')return 0;
+    return Math.sin(Math.PI*ease(t,2.2,2.9));
+  }
+  function sediment(g,x,y,unit,event,t){
+    if(t<1.9||t>4.7)return;
+    g.save();
+    // Two small puffs spread from the feeding spot and drift into clear water.
+    for(let i=0;i<16;i++){
+      const age=(t-1.9-(i%2)*.5-(i%4)*.08)/2;
+      if(age<=0||age>=1)continue;
+      const angle=event.seed+i*2.4;
+      const px=x+unit*age*(.15+Math.cos(angle)*.43);
+      const py=y-unit*age*(.14+.32*Math.abs(Math.sin(angle)));
+      const r=unit*(.027+age*.053);
+      g.fillStyle='rgba(179,160,112,'+(.28*Math.sin(Math.PI*age))+')';
+      g.beginPath();g.ellipse(px,py,r,r*.65,angle,0,Math.PI*2);g.fill();
+    }
+    g.restore();
+  }
   function worm(g,x,y,dir,t,reduced){
     const wiggle=reduced?0:Math.sin(t*7);
     g.save();g.translate(x,y);g.scale(dir,1);g.lineCap='round';
@@ -83,6 +120,11 @@
   }
   function surface(event,t) {
     if(!event)return null;
+    if(event.kind==='forage')return null;
+    if(event.kind==='probe'){
+      const n=baitNudge(event,t);
+      return n>0?{spread:clamp((t-2.2)/.7),opacity:n*.45,x:0,y:0,dip:n*.5}:null;
+    }
     const steal=event.kind==='theft',scare=event.kind==='scare';
     const start=steal?2.95:scare?2.40:2.25,end=steal?4.9:scare?5.10:5.75;
     if(t<start||t>=end)return null;
@@ -94,5 +136,5 @@
       dip:steal?Math.sin(Math.PI*ease(t,3.15,4.12))*1.27:0
     };
   }
-  window.PierWaterEncounters=Object.freeze({choose,interest,layer,worm,surface});
+  window.PierWaterEncounters=Object.freeze({choose,interest,layer,worm,surface,baitNudge,sediment});
 })();
