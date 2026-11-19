@@ -571,6 +571,30 @@ test('ordinary standalone page remains usable with local persistence and no VK',
   await closeGame(reloaded);
 });
 
+test('cloud page renders before character registration', async () => {
+  const session = await openGame({ vk: false, uid: '' });
+  const result = await session.page.evaluate(() => {
+    const before = window.AFNext.snapshot();
+    // This is the real route wrapper installed by installNextCore. It permits
+    // the cloud route before registration; the real render wrapper must agree.
+    route('cloud');
+    return {
+      doneBefore: before.profile.done,
+      doneAfter: window.AFNext.snapshot().profile.done,
+      view,
+      html: document.getElementById('screen').innerHTML
+    };
+  });
+  assert.equal(result.doneBefore, false, 'Use a genuinely unregistered profile');
+  assert.equal(result.doneAfter, false, 'Opening saves must not register a character');
+  assert.equal(result.view, 'cloud', 'The cloud route must be selected');
+  assert.match(result.html, /class="nc-hero"/,
+    'The real render wrapper must render the cloud page before registration');
+  assert.match(result.html, /nc-local-tools/,
+    'The cloud page must include its save/import controls');
+  await closeGame(session);
+});
+
 test('cloud career restores in memory even when localStorage writes are unavailable', async fixture => {
   const backend = new VKBackend(), uid = '99001009';
   backend.seed(uid, fixture);
